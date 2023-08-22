@@ -19,25 +19,28 @@ namespace prjPriorityQueueArrays
             pr[size].value = value;
             pr[size].priority = priority;
         }
-        public  int peek()
-        {
-            int HighestPriority = int.MinValue;
-            int iPos = -1;
-            for(int i = 0 ; i < size; i++)
-            {
-                if ( HighestPriority == pr[i].priority && iPos >-1 && pr[iPos].value < pr[i].value)
-                {
-                    HighestPriority = pr[i].value;
-                    iPos = i;    
-                }
-                else if (HighestPriority < pr[i].priority)
-                {
-                    HighestPriority = pr[i].priority;
-                    iPos = i;
-                }
-            }
-            return iPos;
-        }
+        //UPDATED PEEK METHOD
+        public int peek()
+		{
+			if (size == -1)
+			{
+				throw new InvalidOperationException("Queue is empty");
+			}
+
+			int HighestPriority = int.MinValue;
+			int iPos = -1;
+
+			for (int i = 0; i <= size; i++)
+			{
+				if (pr[i].priority > HighestPriority)
+				{
+					HighestPriority = pr[i].priority;
+					iPos = i;
+				}
+			}
+			return iPos;
+		}
+        
         public  void dequeue()
         {
             int iPos = peek();
